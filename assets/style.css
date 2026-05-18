@@ -284,7 +284,7 @@ footer { background: var(--black); color: #ccc; }
 .schnell-lead { font-size: 13px; color: #444; line-height: 1.75; margin-bottom: 14px; }
 .schnell-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .schnell-list li { font-size: 13px; color: #444; line-height: 1.75; padding: 12px 14px; background: #fff8ea; border-left: 3px solid var(--orange); border-radius: 0 8px 8px 0; }
-.schnell-list li strong { color: var(--black); }
+.schnell-list li strong { color: var(--orange); }
 
 .flow-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
 .flow-step { display: flex; align-items: flex-start; gap: 16px; background: var(--bg); border-radius: 8px; padding: 14px 16px; }
@@ -532,6 +532,10 @@ section { scroll-margin-top: 80px; }
 .award-header-p2, .award-header-p3 { background: var(--black); color: var(--white); }
 .award-header-rank { font-size: 22px; font-weight: 900; letter-spacing: -1px; }
 .award-header-label { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; }
+.badge-sponsored { display: inline-flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.2); letter-spacing: 0.03em; }
+.sponsored-notice { font-size: 11px; color: #888; line-height: 1.5; padding: 8px 22px 0; }
+.sponsored-notice a { color: var(--orange); text-decoration: none; }
+.sponsored-notice a:hover { text-decoration: underline; }
 .award-body { display: grid; grid-template-columns: 220px 1fr; gap: 0; }
 @media (max-width: 640px) { .award-body { grid-template-columns: 1fr; } }
 .award-img-col { padding: 22px 18px; background: #f0f0f0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid #eee; }
@@ -549,6 +553,29 @@ section { scroll-margin-top: 80px; }
 .spec-pill { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; background: #f0f0f0; color: var(--text); }
 .spec-pill.highlight { background: var(--orange); color: var(--white); }
 .award-desc { font-size: 13px; color: #444; line-height: 1.65; }
+
+/* Experten-Zitat */
+.trust-quote { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; padding: 12px 14px; background: #f8f8f8; border-left: 3px solid var(--orange); border-radius: 0 8px 8px 0; }
+.trust-quote-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.trust-quote blockquote { font-size: 12px; color: #444; line-height: 1.65; font-style: italic; margin: 0 0 4px; }
+.trust-quote cite { font-size: 11px; color: #888; font-style: normal; }
+
+/* PVEL-Badge */
+.pvel-badge { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; padding: 11px 14px; background: #fff8ea; border: 1px solid #ffe0a0; border-radius: 8px; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+.pvel-badge:hover { background: #fff3d0; border-color: var(--orange); }
+.pvel-badge-icon { font-size: 20px; flex-shrink: 0; }
+.pvel-badge-text { display: flex; flex-direction: column; gap: 3px; }
+.pvel-badge-text strong { font-size: 12px; font-weight: 700; color: var(--black); }
+.pvel-badge-text span { font-size: 11px; color: #666; line-height: 1.5; }
+.pvel-badge-link { color: var(--orange); font-weight: 600; }
+
+/* Glossar-Tooltips */
+.glossar { display: inline; position: relative; color: inherit; border-bottom: 1px dashed var(--orange); cursor: help; white-space: nowrap; }
+.glossar-tip { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: 220px; background: var(--black); color: #eee; font-size: 11px; line-height: 1.6; font-weight: 400; font-style: normal; padding: 9px 12px; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.25); z-index: 200; pointer-events: none; white-space: normal; }
+.glossar-tip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--black); }
+.glossar:hover .glossar-tip,
+.glossar:focus .glossar-tip { display: block; }
+.glossar-tip strong { color: var(--orange); display: block; margin-bottom: 3px; font-size: 11px; }
 .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 500px) { .pros-cons { grid-template-columns: 1fr; } }
 .pro-con-col { display: flex; flex-direction: column; gap: 5px; }
@@ -603,10 +630,12 @@ section { scroll-margin-top: 80px; }
 .tech-box { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px 20px; }
 .tech-box h4 { font-size: 15px; font-weight: 900; margin-bottom: 10px; }
 .tech-box p  { font-size: 13px; color: #555; line-height: 1.65; }
-.yt-wrapper { background: var(--black); border-radius: var(--radius); overflow: hidden; margin-bottom: 8px; }
+.yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.yt-card { display: flex; flex-direction: column; }
+.yt-intro { font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 10px; padding: 10px 12px; background: #f8f8f8; border-left: 3px solid var(--orange); border-radius: 0 6px 6px 0; }
+.yt-wrapper { background: var(--black); border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; margin-bottom: 0; }
 .yt-wrapper iframe { display: block; width: 100%; height: 240px; border: none; }
 .yt-label { font-size: 11px; text-align: center; padding: 8px; background: var(--black); color: #888; border-radius: 0 0 var(--radius) var(--radius); }
-.yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 @media (max-width: 600px) { .yt-grid { grid-template-columns: 1fr; } }
 
 /* Fazit */
