@@ -531,7 +531,7 @@ section { scroll-margin-top: 80px; }
 .lp-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.15s, box-shadow 0.15s; text-decoration: none; color: var(--text); }
 .lp-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.14); }
 .lp-card-img { width: 100%; height: 160px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #bbb; overflow: hidden; position: relative; }
-.lp-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.lp-card-img img { height: 100%; object-fit: cover; }
 .lp-card-cat { position: absolute; top: 10px; left: 10px; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; }
 .lp-card-cat-module { background: var(--orange); color: var(--white); }
 .lp-card-cat-speicher { background: #1565c0; color: var(--white); }
@@ -577,9 +577,10 @@ section { scroll-margin-top: 80px; }
 
 /* Ratgeber */
 .lp-ratgeber { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-.lp-ratgeber-card { background: var(--white); border-radius: var(--radius); padding: 20px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; border-top: 3px solid var(--orange); text-decoration: none; color: var(--text); transition: transform 0.15s; }
+.lp-ratgeber-card { background: var(--white); border-radius: var(--radius); padding: 20px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--text); transition: transform 0.15s; }
 .lp-ratgeber-card:hover { transform: translateY(-2px); }
-.lp-ratgeber-icon { font-size: 24px; margin-bottom: 4px; }
+.lp-ratgeber-header { display: flex; align-items: center; gap: 10px; }
+.lp-ratgeber-icon { font-size: 22px; flex-shrink: 0; }
 .lp-ratgeber-title { font-size: 14px; font-weight: 900; color: var(--black); }
 .lp-ratgeber-desc { font-size: 12px; color: #666; line-height: 1.6; flex: 1; }
 .lp-ratgeber-link { font-size: 12px; font-weight: 700; color: var(--orange); margin-top: 4px; }
