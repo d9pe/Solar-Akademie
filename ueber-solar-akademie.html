@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/sh24_Solar-Akademie_Favicon.svg">
 <title>Über Solar Akademie | Solar Akademie</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
@@ -11,21 +12,41 @@
 
 <div class="ad-bar">Anzeige &middot; Solar Akademie, Marke der solago GmbH</div>
 
+<!-- HEADER -->
 <header>
+  <div class="progress-bar" id="progressBar"></div>
   <div class="header-inner">
     <a href="index.html" class="logo">
-      <div class="logo-sq">SA</div>
-      <div class="logo-text">Solar<span>Akademie</span></div>
+      <img src="assets/Logoentwurf_dunkel.svg" alt="Solar Akademie" class="logo-img">
     </a>
-    <nav>
-      <a href="index.html#bestenliste">Bestenliste</a>
-      <a href="index.html#vergleich">Vergleich</a>
-      <a href="index.html#kriterien">Kriterien</a>
-      <a href="index.html#faq">FAQ</a>
-      <a href="index.html#fazit">Fazit</a>
+    <nav class="main-nav">
+      <div class="main-nav-item has-dropdown">
+        <a href="#" class="main-nav-link">Testberichte <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <div class="nav-dropdown-group">Solarmodule</div>
+          <a href="index.html" class="nav-dropdown-link">Solarmodul Vergleich 2026</a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Beste Full-Black Module <span class="nav-soon">Bald</span></a>
+          <div class="nav-dropdown-group">Speicher &amp; Wechselrichter</div>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Stromspeicher Vergleich <span class="nav-soon">Bald</span></a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Wechselrichter <span class="nav-soon">Bald</span></a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Balkonkraftwerke <span class="nav-soon">Bald</span></a>
+        </div>
+      </div>
+      <a href="#" class="main-nav-link main-nav-soon">Forum <span class="nav-soon">Bald</span></a>
+      <a href="glossar.html" class="main-nav-link main-nav-soon">Glossar <span class="nav-soon">Bald</span></a>
+      <a href="https://www.youtube.com/@solar-akademie" target="_blank" rel="noopener" class="main-nav-cta">▶ YouTube</a>
     </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menü öffnen">☰</button>
+  </div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Testberichte</a>
+    <a href="#">Forum</a>
+    <a href="#">Glossar</a>
+    <a href="https://www.youtube.com/@solar-akademie" target="_blank" rel="noopener">▶ YouTube</a>
   </div>
 </header>
+
 
 <div class="about-hero">
   <div class="about-hero-inner">
@@ -174,5 +195,23 @@
   </div>
 </footer>
 
+
+<script>
+(function() {
+  var bar = document.getElementById('progressBar');
+  var header = document.querySelector('header');
+  function setBarTop() { bar.style.top = header.offsetHeight + 'px'; }
+  setBarTop();
+  window.addEventListener('resize', setBarTop);
+  window.addEventListener('scroll', function() {
+    var s = window.scrollY;
+    var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
+  }, { passive: true });
+})();
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+</script>
 </body>
 </html>

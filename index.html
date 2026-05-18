@@ -192,13 +192,38 @@
     <a href="#" class="logo">
       <img src="assets/Logoentwurf_dunkel.svg" alt="Solar Akademie" class="logo-img">
     </a>
-    <nav>
-      <a href="#bestenliste">Bestenliste</a>
-      <a href="#vergleich">Vergleich</a>
-      <a href="#kriterien">Kriterien</a>
-      <a href="#faq">FAQ</a>
-      <a href="#fazit">Fazit</a>
+    <nav class="main-nav">
+      <div class="main-nav-item has-dropdown">
+        <a href="#" class="main-nav-link">Testberichte <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown"><div class="nav-dropdown-inner">
+          <div class="nav-dropdown-group">Solarmodule</div>
+          <a href="#" class="nav-dropdown-link">Solarmodul Vergleich 2026</a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Beste Full-Black Module <span class="nav-soon">Bald</span></a>
+          <div class="nav-dropdown-group">Speicher &amp; Wechselrichter</div>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Stromspeicher Vergleich <span class="nav-soon">Bald</span></a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Wechselrichter <span class="nav-soon">Bald</span></a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Balkonkraftwerke <span class="nav-soon">Bald</span></a>
+        </div></div>
+      </div>
+      <a href="#" class="main-nav-link main-nav-soon">Forum <span class="nav-soon">Bald</span></a>
+      <a href="glossar.html" class="main-nav-link main-nav-soon">Glossar <span class="nav-soon">Bald</span></a>
+      <a href="https://www.youtube.com/@solar-akademie" target="_blank" rel="noopener" class="main-nav-cta">▶ YouTube</a>
     </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menü öffnen">☰</button>
+  </div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Testberichte</a>
+    <a href="#">Forum</a>
+    <a href="#">Glossar</a>
+    <a href="https://www.youtube.com/@solar-akademie" target="_blank" rel="noopener">▶ YouTube</a>
+    <div class="mobile-menu-divider"></div>
+    <div class="mobile-menu-label">Auf dieser Seite</div>
+    <a href="#bestenliste">Bestenliste</a>
+    <a href="#vergleich">Vergleich</a>
+    <a href="#kriterien">Kriterien</a>
+    <a href="#faq">FAQ</a>
+    <a href="#fazit">Fazit</a>
   </div>
 </header>
 
@@ -229,8 +254,8 @@
   <main class="main-col">
 
     <!-- TOC -->
-    <div class="toc">
-      <div class="toc-title">Inhaltsverzeichnis</div>
+    <details class="toc">
+      <summary><span class="toc-title">📋 Inhaltsverzeichnis</span><span class="toc-toggle-icon">+</span></summary>
       <ol class="toc-list">
         <li><a href="#bestenliste">Bestenliste auf einen Blick</a></li>
         <li><a href="#kriterien">Vergleichskriterien</a></li>
@@ -240,18 +265,7 @@
         <li><a href="#fazit">Fazit &amp; Empfehlung</a></li>
         <li><a href="#faq">Häufige Fragen (FAQ)</a></li>
       </ol>
-    </div>
-
-    <!-- SCHNELLÜBERSICHT -->
-    <div class="schnell-box">
-      <h2 class="schnell-title">Das Wichtigste zum Solarmodul-Kauf 2026 in Kürze</h2>
-      <p class="schnell-lead">Wer das beste Solarmodul für sein Hausdach sucht, sollte beim Kauf auf folgende drei Kriterien achten:</p>
-      <ul class="schnell-list">
-        <li><strong>Zelltechnologie:</strong> <span class="glossar">N-Type<span class="glossar-tip"><strong>N-Type</strong>Siliziumzelle mit Phosphor-Dotierung. Weniger lichtinduzierte Degradation (LID) und bessere Langzeitstabilität als ältere P-Type-Zellen.</span></span>-Module (<span class="glossar">ABC<span class="glossar-tip"><strong>ABC – All Back Contact</strong>Beide Elektroden auf der Rückseite der Zelle. Keine Abschattung → höchster Wirkungsgrad möglich.</span></span>, <span class="glossar">TOPCon<span class="glossar-tip"><strong>TOPCon</strong>Tunnel Oxide Passivated Contact. N-Type-Zelltechnologie mit passivierter Kontaktschicht – sehr gute Effizienz (22–23 %).</span></span>, i-TOPCon) sind 2026 der Standard im Hochleistungssegment. ABC-Zellen wie im AIKO Neostar 3S+ erreichen mit 24,3 % den höchsten Wirkungsgrad – möglich durch rückseitige Kontaktierung ohne Abschattungsverluste.</li>
-        <li><strong>Garantiebedingungen:</strong> Achten Sie auf mindestens 25 Jahre Produktgarantie und eine lineare Leistungsgarantie von ≥ 87 % nach 25 Jahren. Das AIKO Neostar 3S+ bietet als einziges Modul im Vergleich sogar 30 Jahre Herstellergarantie.</li>
-        <li><strong>Preis pro Wattpeak (€/W):</strong> Der faire Vergleichsmaßstab zwischen unterschiedlich starken Modulen. In unserem Vergleich reichen die Preise von 0,148 €/W bis 0,247 €/W. Höherer <span class="glossar">Wirkungsgrad<span class="glossar-tip"><strong>Wirkungsgrad</strong>Anteil des einfallenden Sonnenlichts, der in elektrische Energie umgewandelt wird. Gemessen unter STC: 1.000 W/m², 25 °C.</span></span> bedeutet mehr Ertrag auf gleicher Dachfläche – das rechtfertigt oft den Mehrpreis.</li>
-      </ul>
-    </div>
+    </details>
 
     <!-- BESTENLISTE ÜBERSICHT -->
     <section id="bestenliste">
@@ -304,6 +318,17 @@
         </a>
       </div>
     </section>
+
+    <!-- SCHNELLÜBERSICHT -->
+    <div class="schnell-box">
+      <h2 class="schnell-title">Das Wichtigste zum Solarmodul-Kauf 2026 in Kürze</h2>
+      <p class="schnell-lead">Wer das beste Solarmodul für sein Hausdach sucht, sollte beim Kauf auf folgende drei Kriterien achten:</p>
+      <ul class="schnell-list">
+        <li><strong>Zelltechnologie:</strong> <span class="glossar">N-Type<span class="glossar-tip"><strong>N-Type</strong>Siliziumzelle mit Phosphor-Dotierung. Weniger lichtinduzierte Degradation (LID) und bessere Langzeitstabilität als ältere P-Type-Zellen.</span></span>-Module (<span class="glossar">ABC<span class="glossar-tip"><strong>ABC – All Back Contact</strong>Beide Elektroden auf der Rückseite der Zelle. Keine Abschattung → höchster Wirkungsgrad möglich.</span></span>, <span class="glossar">TOPCon<span class="glossar-tip"><strong>TOPCon</strong>Tunnel Oxide Passivated Contact. N-Type-Zelltechnologie mit passivierter Kontaktschicht – sehr gute Effizienz (22–23 %).</span></span>, i-TOPCon) sind 2026 der Standard im Hochleistungssegment. ABC-Zellen wie im AIKO Neostar 3S+ erreichen mit 24,3 % den höchsten Wirkungsgrad – möglich durch rückseitige Kontaktierung ohne Abschattungsverluste.</li>
+        <li><strong>Garantiebedingungen:</strong> Achten Sie auf mindestens 25 Jahre Produktgarantie und eine lineare Leistungsgarantie von ≥ 87 % nach 25 Jahren. Das AIKO Neostar 3S+ bietet als einziges Modul im Vergleich sogar 30 Jahre Herstellergarantie.</li>
+        <li><strong>Preis pro Wattpeak (€/W):</strong> Der faire Vergleichsmaßstab zwischen unterschiedlich starken Modulen. In unserem Vergleich reichen die Preise von 0,148 €/W bis 0,247 €/W. Höherer <span class="glossar">Wirkungsgrad<span class="glossar-tip"><strong>Wirkungsgrad</strong>Anteil des einfallenden Sonnenlichts, der in elektrische Energie umgewandelt wird. Gemessen unter STC: 1.000 W/m², 25 °C.</span></span> bedeutet mehr Ertrag auf gleicher Dachfläche – das rechtfertigt oft den Mehrpreis.</li>
+      </ul>
+    </div>
 
     <!-- VERGLEICHSKRITERIEN -->
     <section id="kriterien">
@@ -869,6 +894,20 @@
   <aside class="sidebar">
     <div class="sticky-wrap">
 
+      <!-- ARTIKEL-NAV -->
+      <div class="sidebar-card article-nav-card">
+        <div class="sidebar-card-header">📋 Auf dieser Seite</div>
+        <nav class="article-nav">
+          <a href="#bestenliste" class="article-nav-link"><span class="article-nav-step">1</span>Bestenliste</a>
+          <a href="#kriterien" class="article-nav-link"><span class="article-nav-step">2</span>Vergleichskriterien</a>
+          <a href="#top3" class="article-nav-link"><span class="article-nav-step">3</span>Top 3 im Detail</a>
+          <a href="#vergleich" class="article-nav-link"><span class="article-nav-step">4</span>Vergleichstabelle</a>
+          <a href="#abc-tech" class="article-nav-link"><span class="article-nav-step">5</span>ABC-Technologie</a>
+          <a href="#faq" class="article-nav-link"><span class="article-nav-step">6</span>FAQ</a>
+          <a href="#fazit" class="article-nav-link"><span class="article-nav-step">7</span>Fazit</a>
+        </nav>
+      </div>
+
       <!-- QUICK BUY -->
       <div class="quick-buy">
         <div class="quick-buy-label">☀ Solar Akademie Favorit 2026</div>
@@ -987,16 +1026,54 @@
 (function() {
   var bar = document.getElementById('progressBar');
   var header = document.querySelector('header');
+
   function setBarTop() {
     bar.style.top = header.offsetHeight + 'px';
   }
+
+  function setStickyOffsets() {}
+
+  function updateQuickBuyFixed() {}
+
   setBarTop();
-  window.addEventListener('resize', setBarTop);
+  setStickyOffsets();
+  updateQuickBuyFixed();
+  window.addEventListener('resize', function() {
+    setBarTop();
+    setStickyOffsets();
+    updateQuickBuyFixed();
+  });
   window.addEventListener('scroll', function() {
     var s = window.scrollY;
     var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
+    updateQuickBuyFixed();
   }, { passive: true });
+})();
+
+// Mobile Menu
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+  var m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+});
+
+// Scroll-Spy für Artikel-Nav
+(function() {
+  var sections = ['bestenliste','kriterien','top3','vergleich','abc-tech','faq','fazit'];
+  var links = document.querySelectorAll('.article-nav-link');
+  function onScroll() {
+    var scrollY = window.scrollY + 120;
+    var active = sections[0];
+    sections.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) active = id;
+    });
+    links.forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 })();
 </script>
 
