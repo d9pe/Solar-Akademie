@@ -37,7 +37,7 @@ header { position: sticky; top: 0; z-index: 100; background: var(--black); box-s
 .logo-text span { color: var(--orange); }
 .main-nav { display: flex; align-items: center; gap: 4px; }
 .main-nav-item { position: relative; }
-.main-nav-link { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.85); text-decoration: none; padding: 7px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+.main-nav-link { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.85); text-decoration: none; padding: 7px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
 .main-nav-link:hover { background: rgba(255,255,255,0.08); color: var(--white); }
 .nav-arrow { font-size: 9px; opacity: 0.6; }
 .main-nav-soon { opacity: 0.6; }
