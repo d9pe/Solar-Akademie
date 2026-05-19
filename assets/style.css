@@ -113,7 +113,7 @@ footer { background: var(--black); color: #ccc; }
    ============================================================ */
 .page-hero { background: var(--black); padding: 48px 24px 40px; }
 .page-hero-inner { max-width: 860px; margin: 0 auto; }
-.breadcrumb { font-size: 11px; color: #666; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+.breadcrumb { font-size: 12px; color: #666; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
 .breadcrumb a { color: var(--orange); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb-sep { color: #444; }
