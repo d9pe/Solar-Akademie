@@ -213,18 +213,20 @@
   </div>
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#">Testberichte</a>
+    <div class="mobile-menu-toggle" id="mobileTestToggle">Testberichte <span class="mob-arrow">▾</span></div>
+    <div class="mobile-submenu" id="mobileTestSubmenu">
+      <div class="mobile-menu-label">Solarmodule</div>
+      <a href="solarmodule-vergleich-2026.html">Solarmodul Vergleich 2026</a>
+      <a href="#">Beste Full-Black Module <span class="nav-soon">Bald</span></a>
+      <div class="mobile-menu-label">Speicher &amp; Wechselrichter</div>
+      <a href="#">Stromspeicher Vergleich <span class="nav-soon">Bald</span></a>
+      <a href="#">Wechselrichter <span class="nav-soon">Bald</span></a>
+      <a href="#">Balkonkraftwerke <span class="nav-soon">Bald</span></a>
+    </div>
+    <div class="mobile-menu-divider"></div>
     <a href="#">Forum</a>
     <a href="glossar.html">Glossar</a>
     <a href="https://www.youtube.com/@solar-akademie" target="_blank" rel="noopener">▶ YouTube</a>
-    <div class="mobile-menu-divider"></div>
-    <div class="mobile-menu-label">Auf dieser Seite</div>
-    <a href="#bestenliste">Bestenliste</a>
-    <a href="#vergleich">Vergleich</a>
-    <a href="#kriterien">Kriterien</a>
-    <a href="#faq">FAQ</a>
-    <a href="#fazit">Fazit</a>
-  </div>
 </header>
 
 <div class="overflow-guard">
@@ -265,7 +267,7 @@
 
     <!-- TOC -->
     <details class="toc">
-      <summary><span class="toc-title">📋 Inhaltsverzeichnis</span><span class="toc-toggle-icon">+</span></summary>
+      <summary><span class="toc-title">Inhaltsverzeichnis</span><span class="toc-toggle-icon">+</span></summary>
       <ol class="toc-list">
         <!-- <li><a href="#bestenliste">Bestenliste auf einen Blick</a></li> -->
         <li><a href="#kriterien">Vergleichskriterien</a></li>
@@ -1054,6 +1056,10 @@
 document.getElementById('mobileMenuBtn').addEventListener('click', function() {
   var m = document.getElementById('mobileMenu');
   m.classList.toggle('open');
+});
+document.getElementById('mobileTestToggle').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mobileTestSubmenu').classList.toggle('open');
 });
 
 // Scroll-Spy für Artikel-Nav

@@ -65,7 +65,17 @@
     <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menü öffnen">☰</button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="solarmodule-vergleich-2026.html">Testberichte</a>
+    <div class="mobile-menu-toggle" id="mobileTestToggle">Testberichte <span class="mob-arrow">▾</span></div>
+    <div class="mobile-submenu" id="mobileTestSubmenu">
+      <div class="mobile-menu-label">Solarmodule</div>
+      <a href="solarmodule-vergleich-2026.html">Solarmodul Vergleich 2026</a>
+      <a href="#">Beste Full-Black Module <span class="nav-soon">Bald</span></a>
+      <div class="mobile-menu-label">Speicher &amp; Wechselrichter</div>
+      <a href="#">Stromspeicher Vergleich <span class="nav-soon">Bald</span></a>
+      <a href="#">Wechselrichter <span class="nav-soon">Bald</span></a>
+      <a href="#">Balkonkraftwerke <span class="nav-soon">Bald</span></a>
+    </div>
+    <div class="mobile-menu-divider"></div>
     <a href="#">Forum</a>
     <a href="glossar.html">Glossar</a>
     <a href="https://www.youtube.com/@solar-akademie" target="_blank" rel="noopener">▶ YouTube</a>
@@ -482,6 +492,10 @@
 })();
 document.getElementById('mobileMenuBtn').addEventListener('click', function() {
   document.getElementById('mobileMenu').classList.toggle('open');
+});
+document.getElementById('mobileTestToggle').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mobileTestSubmenu').classList.toggle('open');
 });
 </script>
 
