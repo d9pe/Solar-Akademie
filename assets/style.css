@@ -715,7 +715,7 @@ section { scroll-margin-top: 90px; }
   .lp-hero { padding: 40px 16px 36px; }
   .lp-section { padding: 36px 16px; }
   .lp-cards { grid-template-columns: 1fr; }
-  .lp-ratgeber { grid-template-columns: 1fr 1fr; }
+  .lp-ratgeber { grid-template-columns: 1fr; }
   .lp-trust-stats { grid-template-columns: 1fr 1fr; }
   .lp-nl { padding: 24px 20px; }
   .lp-nl-input { min-width: 0; width: 100%; }
