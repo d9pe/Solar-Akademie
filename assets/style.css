@@ -103,7 +103,7 @@ footer { background: var(--black); color: #ccc; }
 /* ============================================================
    BADGES & RANK CIRCLES
    ============================================================ */
-.rank-circle { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; color: var(--white); }
+.rank-circle { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; color: var(--white); width: 20px; }
 .rc-1 { background: var(--orange); } .rc-2 { background: #888; } .rc-3 { background: #b47530; } .rc-4 { background: #4caf50; } .rc-5 { background: #b0b0b0; }
 .badge { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 4px; white-space: nowrap; text-transform: uppercase; }
 .badge-orange { background: var(--orange); color: var(--white); } .badge-gray { background: #888; color: var(--white); } .badge-bronze { background: #b47530; color: var(--white); } .badge-green { background: #4caf50; color: var(--white); } .badge-lightgray { background: #d0d0d0; color: var(--text); }
