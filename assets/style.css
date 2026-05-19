@@ -31,7 +31,7 @@ header { position: sticky; top: 0; z-index: 100; background: var(--black); box-s
 .progress-bar { position: fixed; top: 66px; left: 0; height: 2px; width: 0%; background: var(--orange); transition: width 0.08s linear; pointer-events: none; z-index: 101; }
 .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 13px 24px; gap: 16px; }
 .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-.logo-img { height: 36px; width: auto; display: block; }
+.logo-img { height: 60px; width: auto; display: block; }
 .logo-sq { background: var(--orange); color: var(--white); font-weight: 700; font-size: 16px; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; letter-spacing: -1px; flex-shrink: 0; }
 .logo-text { font-weight: 700; font-size: 18px; color: var(--black); letter-spacing: -0.5px; }
 .logo-text span { color: var(--orange); }
