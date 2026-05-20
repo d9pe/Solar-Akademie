@@ -161,6 +161,26 @@
 .forum-page-btn:hover { border-color: var(--orange); color: var(--orange); }
 .forum-page-btn.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
 
+/* Forum Ad Banner */
+.forum-ad-banner { display: block; text-decoration: none; color: var(--text); background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); border: 1.5px solid var(--orange-light); margin-bottom: 20px; overflow: hidden; transition: box-shadow 0.15s, border-color 0.15s; }
+.forum-ad-banner:hover { box-shadow: 0 6px 28px rgba(255,168,0,0.22); border-color: var(--orange); }
+.forum-ad-label { background: #fff8ea; border-bottom: 1px solid var(--orange-light); padding: 5px 18px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #b87800; }
+.forum-ad-inner { display: flex; align-items: center; gap: 20px; padding: 18px 20px; }
+.forum-ad-img { position: relative; width: 88px; height: 88px; background: #f5f5f5; border-radius: 8px; flex-shrink: 0; overflow: visible; }
+.forum-ad-img img:first-child { width: 100%; height: 100%; object-fit: contain; padding: 8px; border-radius: 8px; }
+.forum-ad-badge { position: absolute !important; bottom: -10px; right: -10px; width: 44px !important; height: 44px !important; object-fit: contain; padding: 0 !important; }
+.forum-ad-body { flex: 1; min-width: 0; }
+.forum-ad-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--orange); margin-bottom: 5px; }
+.forum-ad-title { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 7px; letter-spacing: -0.3px; }
+.forum-ad-specs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.forum-ad-specs span { font-size: 11px; font-weight: 600; background: #f0f0f0; color: #555; padding: 2px 8px; border-radius: 4px; }
+.forum-ad-desc { font-size: 12px; color: #888; line-height: 1.6; }
+.forum-ad-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.forum-ad-price { font-size: 22px; font-weight: 700; color: var(--black); white-space: nowrap; line-height: 1; }
+.forum-ad-price span { font-size: 11px; font-weight: 400; color: #aaa; display: block; margin-top: 2px; }
+.forum-ad-btn { background: var(--orange); color: var(--white); font-size: 12px; font-weight: 700; padding: 10px 18px; border-radius: 7px; white-space: nowrap; }
+.forum-ad-banner:hover .forum-ad-btn { background: #e09200; }
+
 /* Responsive */
 @media (max-width: 900px) {
   .forum-wrap { grid-template-columns: 1fr; }
@@ -173,6 +193,9 @@
   .forum-thread-stats, .forum-thread-latest { display: none; }
   .forum-post { gap: 10px; padding: 16px 14px; }
   .forum-reply-box { padding: 16px 14px; }
+  .forum-ad-inner { flex-wrap: wrap; gap: 14px; }
+  .forum-ad-cta { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
+  .forum-ad-price span { display: inline; margin-left: 4px; }
 }
 </style>
 </head>
@@ -371,6 +394,33 @@
         </div>
 
       </div>
+
+      <!-- AD: Testsieger -->
+      <a href="https://solarhandel24.de/products/aiko-485w-full-black-aiko-a485-mce54db-neostar-3s" target="_blank" rel="noopener" class="forum-ad-banner">
+        <div class="forum-ad-label">Anzeige · Solarhandel24.de*</div>
+        <div class="forum-ad-inner">
+          <div class="forum-ad-img">
+            <img src="assets/img/AIKO A485-MCE54Db.webp" alt="AIKO A485-MCE54Db Neostar 3S+">
+            <img src="assets/img/sh24_Solar-Akademie_Badge-Ausgezeichnet_V2.webp" alt="Ausgezeichnet" class="forum-ad-badge">
+          </div>
+          <div class="forum-ad-body">
+            <div class="forum-ad-eyebrow">Solar Akademie Testsieger 2026</div>
+            <div class="forum-ad-title">AIKO A485-MCE54Db Neostar 3S+</div>
+            <div class="forum-ad-specs">
+              <span>485 W</span>
+              <span>N-Type ABC</span>
+              <span>24,3 % Wirkungsgrad</span>
+              <span>30 J. Garantie</span>
+              <span>Glas-Glas · Full Black</span>
+            </div>
+            <div class="forum-ad-desc">Das effizienteste Solarmodul im Privatkundensegment 2026 – von der Solar Akademie mit „Ausgezeichnet" bewertet und von unserer Community am häufigsten empfohlen.</div>
+          </div>
+          <div class="forum-ad-cta">
+            <div class="forum-ad-price">119,90 €<span>inkl. MwSt.</span></div>
+            <div class="forum-ad-btn">Bei Solarhandel24 kaufen ↗*</div>
+          </div>
+        </div>
+      </a>
 
       <!-- CATEGORY: Speicher & Wechselrichter -->
       <div class="forum-category" data-cat="speicher">
