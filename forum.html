@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/sh24_Solar-Akademie_Favicon.svg">
+<title>Forum – Solar Akademie Community</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ============================================================
+   FORUM – Page-specific styles
+   ============================================================ */
+
+/* Hero */
+.forum-hero { background: var(--black); padding: 56px 24px 48px; position: relative; overflow: hidden; }
+.forum-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(255,168,0,0.12) 0%, transparent 60%); pointer-events: none; }
+.forum-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.forum-hero-text { flex: 1; min-width: 280px; }
+.forum-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,168,0,0.12); border: 1px solid rgba(255,168,0,0.25); border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.forum-hero h1 { font-size: clamp(26px, 4vw, 42px); font-weight: 700; color: var(--white); letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 12px; }
+.forum-hero h1 em { color: var(--orange); font-style: normal; }
+.forum-hero-lead { font-size: 15px; font-weight: 300; color: #aaa; line-height: 1.7; max-width: 520px; margin-bottom: 24px; }
+.forum-hero-stats { display: flex; gap: 28px; flex-wrap: wrap; }
+.forum-hero-stat-num { font-size: 22px; font-weight: 700; color: var(--orange); line-height: 1; }
+.forum-hero-stat-label { font-size: 11px; color: #666; margin-top: 3px; }
+.forum-hero-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.forum-new-thread-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: var(--white); font-size: 13px; font-weight: 700; padding: 12px 22px; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; transition: background 0.15s, transform 0.1s; }
+.forum-new-thread-btn:hover { background: #e09200; transform: translateY(-1px); }
+.forum-login-btn { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 700; padding: 11px 20px; border-radius: 8px; text-decoration: none; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+.forum-login-btn:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+
+/* Wrap */
+.forum-wrap { max-width: 1200px; margin: 0 auto; padding: 36px 24px 60px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 28px; align-items: start; }
+
+/* Search bar */
+.forum-search-row { display: flex; gap: 10px; margin-bottom: 24px; }
+.forum-search { flex: 1; padding: 11px 16px; font-size: 14px; font-family: inherit; border: 2px solid #e5e5e5; border-radius: 8px; outline: none; transition: border-color 0.15s; background: var(--white); }
+.forum-search:focus { border-color: var(--orange); }
+.forum-search-btn { padding: 11px 18px; background: var(--orange); color: var(--white); border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; font-family: inherit; }
+
+/* Category tabs */
+.forum-tabs { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+.forum-tab { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 6px; border: 1.5px solid #e5e5e5; background: var(--white); color: #666; cursor: pointer; transition: all 0.15s; text-decoration: none; }
+.forum-tab:hover { border-color: var(--orange); color: var(--orange); }
+.forum-tab.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
+
+/* Category blocks */
+.forum-category { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px; }
+.forum-category-header { background: var(--black); padding: 12px 20px; display: flex; align-items: center; gap: 12px; }
+.forum-category-icon { font-size: 18px; }
+.forum-category-title { font-size: 13px; font-weight: 700; color: var(--white); letter-spacing: 0.02em; flex: 1; }
+.forum-category-count { font-size: 11px; color: #666; background: rgba(255,255,255,0.08); padding: 2px 10px; border-radius: 10px; }
+
+/* Thread rows */
+.forum-thread { display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid #f0f0f0; text-decoration: none; color: var(--text); transition: background 0.12s; cursor: pointer; }
+.forum-thread:last-child { border-bottom: none; }
+.forum-thread:hover { background: #fffbf0; }
+.forum-thread-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--white); flex-shrink: 0; }
+.forum-thread-main { flex: 1; min-width: 0; }
+.forum-thread-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+.forum-thread-title { font-size: 14px; font-weight: 700; color: var(--black); line-height: 1.3; }
+.forum-thread:hover .forum-thread-title { color: var(--orange); }
+.forum-thread-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
+.badge-hot { background: #fff0e0; color: #e06000; }
+.badge-new { background: #e8f5e9; color: #2e7d32; }
+.badge-solved { background: #e3f2fd; color: #1565c0; }
+.badge-pinned { background: #f3e5f5; color: #7b1fa2; }
+.forum-thread-meta { font-size: 11px; color: #aaa; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.forum-thread-meta span { display: flex; align-items: center; gap: 4px; }
+.forum-thread-stats { display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; flex-shrink: 0; min-width: 48px; }
+.forum-thread-stat-num { font-size: 15px; font-weight: 700; color: var(--black); line-height: 1; }
+.forum-thread-stat-label { font-size: 9px; color: #bbb; text-transform: uppercase; letter-spacing: 0.04em; }
+.forum-thread-stats.active .forum-thread-stat-num { color: var(--orange); }
+.forum-thread-latest { font-size: 11px; color: #bbb; text-align: right; flex-shrink: 0; min-width: 90px; }
+.forum-thread-latest strong { display: block; color: #555; font-weight: 600; margin-bottom: 1px; }
+
+/* Open thread view (modal style) */
+.forum-thread-detail { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: none; }
+.forum-thread-detail.open { display: block; }
+.forum-detail-header { background: var(--black); padding: 16px 22px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.forum-detail-back { font-size: 12px; color: var(--orange); cursor: pointer; background: none; border: none; font-family: inherit; font-weight: 700; display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+.forum-detail-title { font-size: 16px; font-weight: 700; color: var(--white); line-height: 1.3; }
+.forum-detail-sub { font-size: 11px; color: #666; margin-top: 6px; }
+.forum-close-btn { background: rgba(255,255,255,0.08); border: none; color: #aaa; font-size: 18px; width: 32px; height: 32px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.forum-close-btn:hover { color: var(--white); background: rgba(255,255,255,0.15); }
+
+/* Posts */
+.forum-post { display: flex; gap: 16px; padding: 20px 22px; border-bottom: 1px solid #f0f0f0; }
+.forum-post:last-of-type { border-bottom: none; }
+.forum-post.op { background: #fffdf7; }
+.forum-post-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: var(--white); flex-shrink: 0; }
+.forum-post-body { flex: 1; min-width: 0; }
+.forum-post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.forum-post-author { font-size: 13px; font-weight: 700; color: var(--black); }
+.forum-post-role { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; }
+.role-expert { background: rgba(255,168,0,0.15); color: var(--orange); }
+.role-mod { background: #e3f2fd; color: #1565c0; }
+.role-member { background: #f0f0f0; color: #777; }
+.forum-post-date { font-size: 11px; color: #bbb; margin-left: auto; }
+.forum-post-text { font-size: 13px; color: #444; line-height: 1.75; }
+.forum-post-text p { margin-bottom: 10px; }
+.forum-post-text p:last-child { margin-bottom: 0; }
+.forum-post-text strong { color: var(--black); }
+.forum-post-actions { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.forum-post-like { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #bbb; cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; transition: color 0.15s; }
+.forum-post-like:hover { color: var(--orange); }
+.forum-post-like.liked { color: var(--orange); }
+.forum-post-quote { font-size: 12px; color: #bbb; cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; transition: color 0.15s; }
+.forum-post-quote:hover { color: var(--black); }
+.forum-quote-block { background: #f8f8f8; border-left: 3px solid var(--orange); border-radius: 0 6px 6px 0; padding: 10px 14px; margin-bottom: 10px; font-size: 12px; color: #666; font-style: italic; }
+.forum-quote-block strong { color: #444; font-style: normal; display: block; margin-bottom: 3px; font-size: 11px; }
+.forum-best-answer { background: #e8f5e9; border: 1.5px solid #66bb6a; border-radius: 8px; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #2e7d32; margin-top: 10px; }
+
+/* Reply box */
+.forum-reply-box { padding: 20px 22px; background: #f9f9f9; border-top: 2px solid var(--orange-light); }
+.forum-reply-box h4 { font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+.forum-reply-textarea { width: 100%; padding: 12px 14px; font-size: 13px; font-family: inherit; border: 2px solid #e5e5e5; border-radius: 8px; resize: vertical; min-height: 90px; outline: none; transition: border-color 0.15s; }
+.forum-reply-textarea:focus { border-color: var(--orange); }
+.forum-reply-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; gap: 8px; }
+.forum-reply-hint { font-size: 11px; color: #aaa; }
+.forum-reply-submit { display: inline-flex; align-items: center; gap: 7px; background: var(--orange); color: var(--white); font-size: 12px; font-weight: 700; padding: 9px 18px; border-radius: 7px; border: none; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+.forum-reply-submit:hover { background: #e09200; }
+
+/* Sidebar */
+.forum-sidebar { display: flex; flex-direction: column; gap: 20px; }
+.forum-sidebar-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.forum-sidebar-header { background: var(--black); padding: 11px 16px; font-size: 11px; font-weight: 700; color: var(--white); letter-spacing: 0.05em; text-transform: uppercase; }
+.forum-sidebar-body { padding: 16px; }
+
+/* Top users */
+.forum-user-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f5f5f5; }
+.forum-user-row:last-child { border-bottom: none; }
+.forum-user-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; color: var(--white); flex-shrink: 0; }
+.forum-user-name { font-size: 13px; font-weight: 700; color: var(--black); }
+.forum-user-posts { font-size: 11px; color: #aaa; }
+.forum-user-badge { margin-left: auto; font-size: 9px; font-weight: 700; background: rgba(255,168,0,0.12); color: var(--orange); padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+
+/* Tags */
+.forum-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.forum-tag { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 5px; background: #f0f0f0; color: #555; cursor: pointer; transition: background 0.12s, color 0.12s; }
+.forum-tag:hover { background: var(--orange); color: var(--white); }
+.forum-tag span { color: #aaa; font-weight: 400; font-size: 10px; }
+
+/* Login prompt */
+.forum-login-prompt { background: var(--black); border-radius: var(--radius); padding: 20px; text-align: center; }
+.forum-login-prompt p { font-size: 13px; color: #aaa; margin-bottom: 14px; line-height: 1.6; }
+.forum-login-prompt strong { color: var(--white); }
+.forum-login-form { display: flex; flex-direction: column; gap: 8px; }
+.forum-login-input { padding: 10px 14px; font-size: 13px; font-family: inherit; border: 1.5px solid rgba(255,255,255,0.1); border-radius: 7px; background: rgba(255,255,255,0.06); color: var(--white); outline: none; transition: border-color 0.15s; }
+.forum-login-input::placeholder { color: #555; }
+.forum-login-input:focus { border-color: var(--orange); }
+.forum-login-submit { background: var(--orange); color: var(--white); border: none; border-radius: 7px; padding: 11px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+.forum-login-submit:hover { background: #e09200; }
+.forum-login-divider { font-size: 11px; color: #555; text-align: center; }
+.forum-register-link { font-size: 12px; color: var(--orange); text-align: center; cursor: pointer; }
+
+/* Pagination */
+.forum-pagination { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 20px 0 0; }
+.forum-page-btn { width: 34px; height: 34px; border-radius: 6px; border: 1.5px solid #e5e5e5; background: var(--white); color: #555; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: inherit; transition: all 0.15s; }
+.forum-page-btn:hover { border-color: var(--orange); color: var(--orange); }
+.forum-page-btn.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .forum-wrap { grid-template-columns: 1fr; }
+  .forum-sidebar { display: none; }
+}
+@media (max-width: 640px) {
+  .forum-hero { padding: 32px 16px 28px; }
+  .forum-wrap { padding: 20px 14px 40px; }
+  .forum-thread { gap: 10px; padding: 12px 14px; }
+  .forum-thread-stats, .forum-thread-latest { display: none; }
+  .forum-post { gap: 10px; padding: 16px 14px; }
+  .forum-reply-box { padding: 16px 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ad-bar">Anzeige &middot; Solar Akademie, Marke der solago GmbH</div>
+
+<!-- HEADER -->
+<header>
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/Logoentwurf_dunkel.svg" alt="Solar Akademie" class="logo-img">
+    </a>
+    <nav class="main-nav">
+      <div class="main-nav-item has-dropdown">
+        <a href="#" class="main-nav-link">Testberichte <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown"><div class="nav-dropdown-inner">
+          <div class="nav-dropdown-group">Solarmodule</div>
+          <a href="solarmodule-vergleich-2026.html" class="nav-dropdown-link">Solarmodul Vergleich 2026</a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Beste Full-Black Module <span class="nav-soon">Bald</span></a>
+          <div class="mobile-menu-divider"></div>
+          <div class="nav-dropdown-group">Speicher &amp; Wechselrichter</div>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Stromspeicher Vergleich <span class="nav-soon">Bald</span></a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Wechselrichter <span class="nav-soon">Bald</span></a>
+          <a href="#" class="nav-dropdown-link nav-dropdown-soon">Balkonkraftwerke <span class="nav-soon">Bald</span></a>
+        </div></div>
+      </div>
+      <a href="forum.html" class="main-nav-link" style="color:var(--orange);">Forum</a>
+      <a href="glossar.html" class="main-nav-link">Glossar</a>
+      <a href="https://www.youtube.com/@solar-akademie" target="_blank" rel="noopener" class="main-nav-cta">
+        <img src="https://icon.go-intern.de/simple-icons/youtube.svg?color=FF0000" alt="YouTube" style="width:15px;height:15px;"> YouTube
+      </a>
+    </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menü öffnen">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-toggle" id="mobileTestToggle">Testberichte <span class="mob-arrow">▾</span></div>
+    <div class="mobile-submenu" id="mobileTestSubmenu">
+      <div class="mobile-menu-label">Solarmodule</div>
+      <a href="solarmodule-vergleich-2026.html">Solarmodul Vergleich 2026</a>
+      <a href="#">Beste Full-Black Module <span class="nav-soon">Bald</span></a>
+      <div class="mobile-menu-label">Speicher &amp; Wechselrichter</div>
+      <a href="#">Stromspeicher Vergleich <span class="nav-soon">Bald</span></a>
+      <a href="#">Wechselrichter <span class="nav-soon">Bald</span></a>
+      <a href="#">Balkonkraftwerke <span class="nav-soon">Bald</span></a>
+    </div>
+    <div class="mobile-menu-divider"></div>
+    <a href="forum.html">Forum</a>
+    <a href="glossar.html">Glossar</a>
+    <a href="https://www.youtube.com/@solar-akademie" target="_blank" rel="noopener">▶ YouTube</a>
+  </div>
+</header>
+
+<!-- FORUM HERO -->
+<div class="forum-hero">
+  <div class="forum-hero-inner">
+    <div class="forum-hero-text">
+      <div class="forum-hero-eyebrow">☀ Solar Akademie Community</div>
+      <h1>Das PV-Forum<br><em>für Hausbesitzer</em></h1>
+      <p class="forum-hero-lead">Stell deine Fragen, teile deine Erfahrungen und profitiere vom Wissen von tausenden Solaranlagen-Besitzern und Experten der solago GmbH.</p>
+      <div class="forum-hero-stats">
+        <div><div class="forum-hero-stat-num">4.812</div><div class="forum-hero-stat-label">Mitglieder</div></div>
+        <div><div class="forum-hero-stat-num">2.349</div><div class="forum-hero-stat-label">Beiträge</div></div>
+        <div><div class="forum-hero-stat-num">641</div><div class="forum-hero-stat-label">Gelöste Fragen</div></div>
+      </div>
+    </div>
+    <div class="forum-hero-cta">
+      <button class="forum-new-thread-btn" onclick="openNewThread()">✏ Neues Thema erstellen</button>
+      <button class="forum-login-btn" onclick="scrollToLogin()">Anmelden</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN FORUM LAYOUT -->
+<div class="forum-wrap">
+
+  <!-- LEFT: THREAD LIST + DETAIL -->
+  <div class="forum-main" id="forumMain">
+
+    <!-- SEARCH -->
+    <div class="forum-search-row">
+      <input type="text" class="forum-search" placeholder="Forum durchsuchen – z. B. »AIKO Neostar Erfahrungen«…" id="forumSearchInput">
+      <button class="forum-search-btn">🔍 Suchen</button>
+    </div>
+
+    <!-- TABS -->
+    <div class="forum-tabs">
+      <a class="forum-tab active" onclick="setTab(this, 'alle')">Alle Themen</a>
+      <a class="forum-tab" onclick="setTab(this, 'module')">⚡ Solarmodule</a>
+      <a class="forum-tab" onclick="setTab(this, 'speicher')">🔋 Speicher</a>
+      <a class="forum-tab" onclick="setTab(this, 'wechselrichter')">⚙ Wechselrichter</a>
+      <a class="forum-tab" onclick="setTab(this, 'installation')">🔧 Installation</a>
+      <a class="forum-tab" onclick="setTab(this, 'rechtliches')">📋 Rechtliches & Förderung</a>
+    </div>
+
+    <!-- THREAD LIST VIEW -->
+    <div id="threadListView">
+
+      <!-- CATEGORY: Solarmodule -->
+      <div class="forum-category" data-cat="module">
+        <div class="forum-category-header">
+          <span class="forum-category-icon">⚡</span>
+          <span class="forum-category-title">Solarmodule</span>
+          <span class="forum-category-count">847 Beiträge · 312 Themen</span>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('aiko-erfahrung')">
+          <div class="forum-thread-avatar" style="background:var(--orange);">MK</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">Erfahrungen mit AIKO Neostar 3S+ nach 6 Monaten – lohnt sich der Aufpreis?</span>
+              <span class="forum-thread-badge badge-hot">🔥 Heiß</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ MartinK_Köln</span>
+              <span>⚡ Solarmodule</span>
+              <span>🕐 vor 2 Stunden</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats active">
+            <div class="forum-thread-stat-num">38</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>JanikN_solago</strong>
+            vor 14 Min.
+          </div>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('topcon-abc')">
+          <div class="forum-thread-avatar" style="background:#4caf50;">SH</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">TOPCon vs. ABC – welche Technologie lohnt sich 2026 wirklich?</span>
+              <span class="forum-thread-badge badge-solved">✓ Gelöst</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ SolarHans_Mü</span>
+              <span>⚡ Solarmodule</span>
+              <span>🕐 gestern</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats">
+            <div class="forum-thread-stat-num">24</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>PV_Profi_2026</strong>
+            vor 3 Std.
+          </div>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('jolywood-optik')">
+          <div class="forum-thread-avatar" style="background:#9c27b0;">LB</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">Jolywood Transparent Black auf Ziegeldach – Bilder meiner Installation</span>
+              <span class="forum-thread-badge badge-new">✨ Neu</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ LenaBergmann</span>
+              <span>⚡ Solarmodule</span>
+              <span>🕐 heute Morgen</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats">
+            <div class="forum-thread-stat-num">7</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>LenaBergmann</strong>
+            vor 1 Std.
+          </div>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('pvel-bedeutung')">
+          <div class="forum-thread-avatar" style="background:#1565c0;">FW</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">Was bedeutet PVEL Top Performer in der Praxis? Erklärt für Einsteiger</span>
+              <span class="forum-thread-badge badge-pinned">📌 Angepinnt</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ JanikN_solago</span>
+              <span>⚡ Solarmodule</span>
+              <span>🕐 15.05.2026</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats">
+            <div class="forum-thread-stat-num">12</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>SolarFred_HH</strong>
+            vor 2 Tagen
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CATEGORY: Speicher & Wechselrichter -->
+      <div class="forum-category" data-cat="speicher">
+        <div class="forum-category-header">
+          <span class="forum-category-icon">🔋</span>
+          <span class="forum-category-title">Speicher &amp; Wechselrichter</span>
+          <span class="forum-category-count">523 Beiträge · 189 Themen</span>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('speicher-groesse')">
+          <div class="forum-thread-avatar" style="background:#f44336;">TR</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">Wie groß muss mein Speicher für eine 10 kWp Anlage sein?</span>
+              <span class="forum-thread-badge badge-hot">🔥 Heiß</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ ThomasR_Berlin</span>
+              <span>🔋 Speicher</span>
+              <span>🕐 vor 5 Stunden</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats active">
+            <div class="forum-thread-stat-num">41</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>SpeicherProfi</strong>
+            vor 22 Min.
+          </div>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('fronius-sma')">
+          <div class="forum-thread-avatar" style="background:#00897b;">KS</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">Fronius vs. SMA Wechselrichter 2026 – meine Erfahrungen nach 2 Jahren</span>
+              <span class="forum-thread-badge badge-solved">✓ Gelöst</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ KlausS_Freiburg</span>
+              <span>⚙ Wechselrichter</span>
+              <span>🕐 vorgestern</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats">
+            <div class="forum-thread-stat-num">19</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>KlausS_Freiburg</strong>
+            vor 1 Tag
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CATEGORY: Installation & Montage -->
+      <div class="forum-category" data-cat="installation">
+        <div class="forum-category-header">
+          <span class="forum-category-icon">🔧</span>
+          <span class="forum-category-title">Installation &amp; Montage</span>
+          <span class="forum-category-count">394 Beiträge · 147 Themen</span>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('dachstatik')">
+          <div class="forum-thread-avatar" style="background:#e65100;">PE</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">Dachstatik für Glas-Glas Module – brauche ich ein Gutachten?</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ PeterE_Stuttgart</span>
+              <span>🔧 Installation</span>
+              <span>🕐 vor 1 Tag</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats">
+            <div class="forum-thread-stat-num">9</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>InstProfi_DE</strong>
+            vor 4 Std.
+          </div>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('ost-west')">
+          <div class="forum-thread-avatar" style="background:#546e7a;">AH</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">Ost-West-Aufteilung auf Satteldach – lohnt sich das im Vergleich zu Süd?</span>
+              <span class="forum-thread-badge badge-new">✨ Neu</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ AnnaH_Hannover</span>
+              <span>🔧 Installation</span>
+              <span>🕐 heute</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats">
+            <div class="forum-thread-stat-num">3</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>SolarHans_Mü</strong>
+            vor 30 Min.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CATEGORY: Rechtliches -->
+      <div class="forum-category" data-cat="rechtliches">
+        <div class="forum-category-header">
+          <span class="forum-category-icon">📋</span>
+          <span class="forum-category-title">Rechtliches, Förderung &amp; Steuern</span>
+          <span class="forum-category-count">285 Beiträge · 103 Themen</span>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('marktstammdaten')">
+          <div class="forum-thread-avatar" style="background:#283593;">BV</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">Marktstammdatenregister – wie melde ich meine Anlage an? Schritt für Schritt</span>
+              <span class="forum-thread-badge badge-pinned">📌 Angepinnt</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ JanikN_solago</span>
+              <span>📋 Rechtliches</span>
+              <span>🕐 01.05.2026</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats">
+            <div class="forum-thread-stat-num">31</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>NeubesitzerPV</strong>
+            vor 6 Std.
+          </div>
+        </div>
+
+        <div class="forum-thread" onclick="openThread('eeg-steuer')">
+          <div class="forum-thread-avatar" style="background:#558b2f;">GR</div>
+          <div class="forum-thread-main">
+            <div class="forum-thread-top">
+              <span class="forum-thread-title">EEG 2026 – was hat sich bei der Einspeisevergütung geändert?</span>
+              <span class="forum-thread-badge badge-new">✨ Neu</span>
+            </div>
+            <div class="forum-thread-meta">
+              <span>✍ GabrieleR_NRW</span>
+              <span>📋 Rechtliches</span>
+              <span>🕐 heute</span>
+            </div>
+          </div>
+          <div class="forum-thread-stats">
+            <div class="forum-thread-stat-num">5</div>
+            <div class="forum-thread-stat-label">Antworten</div>
+          </div>
+          <div class="forum-thread-latest">
+            <strong>GabrieleR_NRW</strong>
+            vor 2 Std.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pagination -->
+      <div class="forum-pagination">
+        <button class="forum-page-btn active">1</button>
+        <button class="forum-page-btn">2</button>
+        <button class="forum-page-btn">3</button>
+        <button class="forum-page-btn">…</button>
+        <button class="forum-page-btn">12</button>
+      </div>
+
+    </div><!-- end threadListView -->
+
+    <!-- THREAD DETAIL VIEW (hidden by default, shown on click) -->
+    <div class="forum-thread-detail" id="threadDetailView">
+
+      <!-- AIKO ERFAHRUNG THREAD -->
+      <div id="thread-aiko-erfahrung">
+        <div class="forum-detail-header">
+          <div style="flex:1">
+            <button class="forum-detail-back" onclick="closeThread()">← Zurück zur Übersicht</button>
+            <div class="forum-detail-title">Erfahrungen mit AIKO Neostar 3S+ nach 6 Monaten – lohnt sich der Aufpreis?</div>
+            <div class="forum-detail-sub">⚡ Solarmodule · 38 Antworten · 1.247 Aufrufe · gestartet von MartinK_Köln</div>
+          </div>
+          <button class="forum-close-btn" onclick="closeThread()">✕</button>
+        </div>
+
+        <!-- OP Post -->
+        <div class="forum-post op">
+          <div class="forum-post-avatar" style="background:var(--orange);">MK</div>
+          <div class="forum-post-body">
+            <div class="forum-post-header">
+              <span class="forum-post-author">MartinK_Köln</span>
+              <span class="forum-post-role role-member">Mitglied</span>
+              <span class="forum-post-date">Heute, 09:14 Uhr</span>
+            </div>
+            <div class="forum-post-text">
+              <p>Hallo zusammen, ich habe im November 2025 meine 9,7-kWp-Anlage mit 20 × AIKO A485-MCE54Db Neostar 3S+ in Betrieb genommen. Nach 6 Monaten kann ich jetzt ein erstes echtes Fazit ziehen.</p>
+              <p>Ausgangssituation: Satteldach, 38° Neigung, Südausrichtung, keine Verschattung. Mein Installateur hatte mir zunächst ein günstigeres TOPCon-Set für ca. 2.800 € weniger angeboten. Ich habe mich dann doch für die AIKO entschieden – hauptsächlich wegen der 30 Jahre Garantie und dem höheren Wirkungsgrad (weniger Module auf gleicher Fläche).</p>
+              <p><strong>Ergebnis nach 6 Monaten (Nov–April): 5.312 kWh Gesamtertrag.</strong> Laut Simulation hätte ich mit den TOPCon-Modulen bei gleicher Fläche ca. 4.890 kWh erwartet. Hochgerechnet auf 25 Jahre (mit Degradation) macht das einen erheblichen Unterschied.</p>
+              <p>Hat jemand ähnliche Langzeiterfahrungen? Oder wer hat sich für TOPCon entschieden und bereut es bzw. ist zufrieden?</p>
+            </div>
+            <div class="forum-post-actions">
+              <button class="forum-post-like liked" onclick="toggleLike(this)">👍 <span>47</span></button>
+              <button class="forum-post-quote" onclick="quotePost('MartinK_Köln')">↩ Zitieren</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reply 1 -->
+        <div class="forum-post">
+          <div class="forum-post-avatar" style="background:#4caf50;">SH</div>
+          <div class="forum-post-body">
+            <div class="forum-post-header">
+              <span class="forum-post-author">SolarHans_Mü</span>
+              <span class="forum-post-role role-member">Mitglied</span>
+              <span class="forum-post-date">Heute, 10:02 Uhr</span>
+            </div>
+            <div class="forum-post-text">
+              <p>Sehr interessant! Ich bin auch kurz davor die AIKO zu bestellen, aber 0,247 €/W vs. 0,152 €/W für JA Solar ist halt schon ein Riesenunterschied. Bei 20 Modulen à 485 W sind das etwa 920 € Mehrkosten.</p>
+              <p>Kannst du mal den Ertrag pro kWp ausrechnen? Das wäre ein besserer Vergleichswert für alle hier.</p>
+            </div>
+            <div class="forum-post-actions">
+              <button class="forum-post-like" onclick="toggleLike(this)">👍 <span>12</span></button>
+              <button class="forum-post-quote" onclick="quotePost('SolarHans_Mü')">↩ Zitieren</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reply 2 – Expert -->
+        <div class="forum-post">
+          <div class="forum-post-avatar" style="background:var(--orange);">JN</div>
+          <div class="forum-post-body">
+            <div class="forum-post-header">
+              <span class="forum-post-author">JanikN_solago</span>
+              <span class="forum-post-role role-expert">☀ Experte</span>
+              <span class="forum-post-date">Heute, 11:38 Uhr</span>
+            </div>
+            <div class="forum-post-text">
+              <div class="forum-quote-block">
+                <strong>MartinK_Köln schrieb:</strong>
+                Ergebnis nach 6 Monaten (Nov–April): 5.312 kWh Gesamtertrag.
+              </div>
+              <p>Hallo Martin, sehr schöner Praxisbericht! 5.312 kWh in Nov–April auf einer 9,7-kWp-Anlage entspricht ca. <strong>547 kWh/kWp</strong> – das ist für Köln in den sonnenärmeren Monaten ein hervorragender Wert und bestätigt unsere internen Messungen.</p>
+              <p>Zum Kostenvergleich: Bei 9,7 kWp und 0,247 €/W zahlt man für die Module ca. 2.396 € mehr als bei einem 0,152-€/W-TOPCon. Hochgerechnet auf 25 Jahre Mehrertrag von ca. 200–250 kWh/Jahr (je nach Modell und Verschattungssituation) ergibt sich bei 0,30 €/kWh Eigenverbrauchswert eine Mehrrendite von ca. 1.500–1.875 € – die Mehrkosten amortisieren sich also innerhalb von 13–16 Jahren durch den Mehrertrag allein.</p>
+              <p>Wer wenig Dachfläche hat oder maximale Ertragsdichte anstrebt, ist mit ABC klar im Vorteil. Bei großem Dach kann TOPCon die bessere Wahl sein.</p>
+              <div class="forum-best-answer">✓ Beste Antwort · von JanikN_solago</div>
+            </div>
+            <div class="forum-post-actions">
+              <button class="forum-post-like liked" onclick="toggleLike(this)">👍 <span>89</span></button>
+              <button class="forum-post-quote" onclick="quotePost('JanikN_solago')">↩ Zitieren</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reply 3 -->
+        <div class="forum-post">
+          <div class="forum-post-avatar" style="background:#9c27b0;">LB</div>
+          <div class="forum-post-body">
+            <div class="forum-post-header">
+              <span class="forum-post-author">LenaBergmann</span>
+              <span class="forum-post-role role-member">Mitglied</span>
+              <span class="forum-post-date">Heute, 12:55 Uhr</span>
+            </div>
+            <div class="forum-post-text">
+              <p>Danke für die Erklärung, Janik! Eine Frage noch: Merkt man den Unterschied im Temperaturkoeffizienten in der Praxis? Letzen Sommer war es bei uns in Freiburg tagelang über 35°C...</p>
+            </div>
+            <div class="forum-post-actions">
+              <button class="forum-post-like" onclick="toggleLike(this)">👍 <span>8</span></button>
+              <button class="forum-post-quote" onclick="quotePost('LenaBergmann')">↩ Zitieren</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reply box -->
+        <div class="forum-reply-box">
+          <h4>Deine Antwort</h4>
+          <textarea class="forum-reply-textarea" id="replyText" placeholder="Schreibe deine Antwort… Du kannst Fragen stellen, eigene Erfahrungen teilen oder hilfreiche Tipps geben."></textarea>
+          <div class="forum-reply-actions">
+            <span class="forum-reply-hint">Bitte bleib sachlich und respektvoll. Keine Werbung.</span>
+            <button class="forum-reply-submit" onclick="submitReply()">✉ Antwort absenden</button>
+          </div>
+        </div>
+
+      </div><!-- end thread-aiko-erfahrung -->
+
+    </div><!-- end threadDetailView -->
+
+  </div><!-- end forum-main -->
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="forum-sidebar">
+
+    <!-- Login / Anmelden -->
+    <div id="loginCard">
+      <div class="forum-login-prompt">
+        <p>Melde dich an, um <strong>eigene Fragen zu stellen</strong>, Antworten zu bewerten und Benachrichtigungen zu erhalten.</p>
+        <div class="forum-login-form">
+          <input type="text" class="forum-login-input" placeholder="Benutzername oder E-Mail">
+          <input type="password" class="forum-login-input" placeholder="Passwort">
+          <button class="forum-login-submit">Jetzt anmelden</button>
+          <div class="forum-login-divider">— oder —</div>
+          <div class="forum-register-link">Noch kein Konto? Jetzt registrieren →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top-Mitglieder -->
+    <div class="forum-sidebar-card">
+      <div class="forum-sidebar-header">🏆 Aktivste Mitglieder</div>
+      <div class="forum-sidebar-body">
+        <div class="forum-user-row">
+          <div class="forum-user-avatar" style="background:var(--orange);">JN</div>
+          <div><div class="forum-user-name">JanikN_solago</div><div class="forum-user-posts">412 Beiträge</div></div>
+          <span class="forum-user-badge">☀ Experte</span>
+        </div>
+        <div class="forum-user-row">
+          <div class="forum-user-avatar" style="background:#4caf50;">SH</div>
+          <div><div class="forum-user-name">SolarHans_Mü</div><div class="forum-user-posts">287 Beiträge</div></div>
+          <span class="forum-user-badge">⭐ Top</span>
+        </div>
+        <div class="forum-user-row">
+          <div class="forum-user-avatar" style="background:#1565c0;">PP</div>
+          <div><div class="forum-user-name">PV_Profi_2026</div><div class="forum-user-posts">193 Beiträge</div></div>
+          <span class="forum-user-badge">⭐ Top</span>
+        </div>
+        <div class="forum-user-row">
+          <div class="forum-user-avatar" style="background:var(--orange);">MK</div>
+          <div><div class="forum-user-name">MartinK_Köln</div><div class="forum-user-posts">58 Beiträge</div></div>
+        </div>
+        <div class="forum-user-row">
+          <div class="forum-user-avatar" style="background:#9c27b0;">LB</div>
+          <div><div class="forum-user-name">LenaBergmann</div><div class="forum-user-posts">41 Beiträge</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beliebte Tags -->
+    <div class="forum-sidebar-card">
+      <div class="forum-sidebar-header">🏷 Beliebte Themen</div>
+      <div class="forum-sidebar-body">
+        <div class="forum-tags">
+          <span class="forum-tag">AIKO <span>(148)</span></span>
+          <span class="forum-tag">TOPCon <span>(112)</span></span>
+          <span class="forum-tag">ABC <span>(97)</span></span>
+          <span class="forum-tag">Speicher <span>(89)</span></span>
+          <span class="forum-tag">Wirkungsgrad <span>(76)</span></span>
+          <span class="forum-tag">Glas-Glas <span>(64)</span></span>
+          <span class="forum-tag">Wechselrichter <span>(58)</span></span>
+          <span class="forum-tag">Full Black <span>(52)</span></span>
+          <span class="forum-tag">Einspeisevergütung <span>(47)</span></span>
+          <span class="forum-tag">Förderung <span>(44)</span></span>
+          <span class="forum-tag">JA Solar <span>(38)</span></span>
+          <span class="forum-tag">Dachstatik <span>(29)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Neueste Testberichte -->
+    <div class="forum-sidebar-card">
+      <div class="forum-sidebar-header">📄 Aktuelle Testberichte</div>
+      <div class="forum-sidebar-body" style="display:flex;flex-direction:column;gap:12px;">
+        <a href="solarmodule-vergleich-2026.html" style="text-decoration:none;display:flex;gap:10px;align-items:center;">
+          <div style="width:44px;height:44px;background:#f0f0f0;border-radius:6px;flex-shrink:0;overflow:hidden;">
+            <img src="assets/img/AIKO A485-MCE54Db.webp" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--black);line-height:1.3;">Solarmodul Vergleich 2026</div>
+            <div style="font-size:11px;color:var(--orange);margin-top:2px;">Zum Test →</div>
+          </div>
+        </a>
+        <div style="display:flex;gap:10px;align-items:center;opacity:0.5;">
+          <div style="width:44px;height:44px;background:#e8f0fe;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;">🔋</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--black);line-height:1.3;">Stromspeicher Vergleich</div>
+            <div style="font-size:11px;color:#aaa;margin-top:2px;">Erscheint bald</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- end forum-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="affiliate-box">
+    <strong style="color:#ccc;">* Affiliate- und Partnerlink-Hinweis</strong><br>
+    Die Solar Akademie wird von der solago GmbH betrieben, die auch <strong>Solarhandel24.de</strong> betreibt. Mit einem Sternchen (*) gekennzeichnete Links sind kommerzielle Partnerlinks zu Solarhandel24.de.
+  </div>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <img src="assets/Logoentwurf_dunkel.svg" alt="Solar Akademie" class="logo-img">
+      </div>
+      <p>Unabhängiger redaktioneller Ratgeber für Photovoltaik, Solarmodule, Stromspeicher und Wechselrichter. Eine Marke der solago GmbH.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Testberichte</h5>
+      <ul>
+        <li><a href="solarmodule-vergleich-2026.html">Solarmodul Vergleich 2026</a></li>
+        <li><a href="#">Stromspeicher Vergleich (bald)</a></li>
+        <li><a href="#">Wechselrichter Vergleich (bald)</a></li>
+        <li><a href="#">Balkonkraftwerke (bald)</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Rechtliches</h5>
+      <ul>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutzerklärung</a></li>
+        <li><a href="affiliate-hinweis.html">Affiliate-Hinweis</a></li>
+        <li><a href="ueber-solar-akademie.html">Über Solar Akademie</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Solar Akademie – eine Marke der solago GmbH · Alle Rechte vorbehalten
+  </div>
+</footer>
+
+<script>
+// Progress bar
+(function() {
+  var bar = document.getElementById('progressBar');
+  var header = document.querySelector('header');
+  function setBarTop() { bar.style.top = header.offsetHeight + 'px'; }
+  setBarTop();
+  window.addEventListener('resize', setBarTop);
+  window.addEventListener('scroll', function() {
+    var s = window.scrollY;
+    var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
+  }, { passive: true });
+})();
+
+// Mobile menu
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+document.getElementById('mobileTestToggle').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mobileTestSubmenu').classList.toggle('open');
+});
+
+// Tab filter
+function setTab(el, cat) {
+  document.querySelectorAll('.forum-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  var categories = document.querySelectorAll('.forum-category');
+  categories.forEach(function(c) {
+    if (cat === 'alle') {
+      c.style.display = '';
+    } else {
+      c.style.display = (c.dataset.cat === cat) ? '' : 'none';
+    }
+  });
+}
+
+// Open thread detail
+function openThread(id) {
+  // Show only the detail view for the clicked thread
+  var listView = document.getElementById('threadListView');
+  var detailView = document.getElementById('threadDetailView');
+
+  // Only thread "aiko-erfahrung" has a detail – others show a placeholder
+  if (id === 'aiko-erfahrung') {
+    listView.style.display = 'none';
+    detailView.classList.add('open');
+    document.getElementById('thread-aiko-erfahrung').style.display = '';
+  } else {
+    // For other threads, just show the aiko detail as a demo
+    listView.style.display = 'none';
+    detailView.classList.add('open');
+    document.getElementById('thread-aiko-erfahrung').style.display = '';
+  }
+  window.scrollTo({ top: document.getElementById('forumMain').offsetTop - 80, behavior: 'smooth' });
+}
+
+function closeThread() {
+  document.getElementById('threadListView').style.display = '';
+  document.getElementById('threadDetailView').classList.remove('open');
+  window.scrollTo({ top: document.querySelector('.forum-wrap').offsetTop - 80, behavior: 'smooth' });
+}
+
+// Like toggle
+function toggleLike(btn) {
+  btn.classList.toggle('liked');
+  var span = btn.querySelector('span');
+  var count = parseInt(span.textContent);
+  span.textContent = btn.classList.contains('liked') ? count + 1 : count - 1;
+}
+
+// Quote
+function quotePost(author) {
+  var ta = document.getElementById('replyText');
+  ta.value = '[Zitat von ' + author + ']\n\n';
+  ta.focus();
+}
+
+// Submit reply (demo)
+function submitReply() {
+  var ta = document.getElementById('replyText');
+  if (ta.value.trim().length < 5) {
+    ta.style.borderColor = '#e53935';
+    ta.focus();
+    return;
+  }
+  ta.style.borderColor = '#66bb6a';
+  ta.value = '';
+  setTimeout(function() { ta.style.borderColor = ''; }, 2000);
+  // Show a small success toast
+  var toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#2e7d32;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:700;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.2)';
+  toast.textContent = '✓ Antwort abgesendet!';
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 2800);
+}
+
+// New thread button
+function openNewThread() {
+  scrollToLogin();
+}
+
+function scrollToLogin() {
+  var loginCard = document.getElementById('loginCard');
+  if (loginCard) {
+    loginCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    loginCard.querySelector('.forum-login-input').focus();
+  }
+}
+
+// Search highlight (simple demo)
+document.querySelector('.forum-search-btn').addEventListener('click', function() {
+  var q = document.getElementById('forumSearchInput').value.trim().toLowerCase();
+  if (!q) return;
+  document.querySelectorAll('.forum-thread-title').forEach(function(el) {
+    var text = el.textContent.toLowerCase();
+    el.closest('.forum-thread').style.display = text.includes(q) ? '' : 'none';
+  });
+});
+</script>
+
+</body>
+</html>
