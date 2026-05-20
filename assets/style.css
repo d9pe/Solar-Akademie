@@ -751,3 +751,122 @@ section { scroll-margin-top: 90px; }
 /* Fazit badge + CTA */
 .fazit-winner-cta { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
 .fazit-rating-badge { width: 120px; height: 120px; object-fit: contain; display: block; }
+/* ============================================================
+   SIDEBAR: COMPACT QUICK-BUY CARD
+   ============================================================ */
+.quick-buy.quick-buy-compact {
+  display: block;
+  text-decoration: none;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(255,165,0,0.25);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+.quick-buy.quick-buy-compact:hover {
+  border-color: rgba(255,165,0,0.7);
+  box-shadow: 0 4px 20px rgba(255,140,0,0.18);
+  background: linear-gradient(135deg, #1e1e38 0%, #1a2540 100%);
+}
+.quick-buy.quick-buy-compact .quick-buy-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--orange);
+  margin-bottom: 10px;
+  padding: 0;
+  background: none;
+}
+.quick-buy-compact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.quick-buy-compact-img {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 6px;
+  background: #0d0d1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.quick-buy-compact-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+.quick-buy-compact-info {
+  flex: 1;
+  min-width: 0;
+}
+.quick-buy.quick-buy-compact .quick-buy-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  margin: 0 0 3px;
+  padding: 0;
+  white-space: normal;
+}
+.quick-buy-sub {
+  font-size: 10px;
+  color: #888;
+  line-height: 1.4;
+}
+.quick-buy-compact-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 10px;
+}
+.quick-buy.quick-buy-compact .quick-buy-price {
+  font-size: 14px;
+  color: var(--orange);
+  margin: 0;
+  padding: 0;
+}
+.quick-buy.quick-buy-compact .quick-buy-price span {
+  font-size: 10px;
+  font-weight: 400;
+  color: #777;
+  margin-left: 3px;
+}
+.quick-buy-arrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,165,0,0.7);
+  transition: color 0.2s, transform 0.2s;
+}
+.quick-buy.quick-buy-compact:hover .quick-buy-arrow {
+  color: var(--orange);
+}
+
+/* ============================================================
+   SIDEBAR: STICKY NAV + AUTOR
+   ============================================================ */
+
+/* align-self: stretch gibt der Sidebar die volle Grid-Höhe –
+   Voraussetzung dafür, dass position:sticky darin funktioniert */
+.sidebar {
+  align-self: stretch !important;
+  display: block;
+}
+.sticky-wrap {
+  display: contents;
+}
+.sidebar-sticky-block-wrap {
+  position: sticky;
+  top: 80px; /* wird per JS auf die tatsächliche Header-Höhe gesetzt */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
