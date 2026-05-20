@@ -164,6 +164,25 @@ footer { background: var(--black); color: #ccc; }
 .flow-step-text strong { color: var(--black); display: block; margin-bottom: 2px; }
 
 /* ============================================================
+   ARTICLE TEXT BLOCKS (Ratgeber)
+   ============================================================ */
+.article-text-block { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px 32px; margin-bottom: 16px; }
+.article-text-block h3 { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--orange-light); letter-spacing: -0.3px; }
+.article-text-block p { font-size: 14px; color: #444; line-height: 1.8; margin-bottom: 12px; }
+.article-text-block p:last-child { margin-bottom: 0; }
+.article-text-block p strong { color: var(--black); }
+.article-text-block .notice-box { margin-top: 14px; }
+@media (max-width: 640px) {
+  .article-text-block { padding: 18px 16px; }
+  .article-text-block h3 { font-size: 16px; }
+}
+.flow-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.flow-step { display: flex; align-items: flex-start; gap: 16px; background: var(--bg); border-radius: 8px; padding: 14px 16px; }
+.flow-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--orange); color: var(--white); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.flow-step-text { font-size: 13px; color: #444; line-height: 1.6; }
+.flow-step-text strong { color: var(--black); display: block; margin-bottom: 2px; }
+
+/* ============================================================
    ABOUT PAGE
    ============================================================ */
 .about-hero { background: var(--black); padding: 60px 24px 52px; position: relative; overflow: hidden; }
