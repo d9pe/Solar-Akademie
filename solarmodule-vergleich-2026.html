@@ -179,6 +179,129 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+/* ── Compact Quick-Buy Card ─────────────────────────────── */
+.quick-buy.quick-buy-compact {
+  display: block;
+  text-decoration: none;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(255,165,0,0.25);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+.quick-buy.quick-buy-compact:hover {
+  border-color: rgba(255,165,0,0.7);
+  box-shadow: 0 4px 20px rgba(255,140,0,0.18);
+  background: linear-gradient(135deg, #1e1e38 0%, #1a2540 100%);
+}
+.quick-buy.quick-buy-compact .quick-buy-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--orange, #f90);
+  margin-bottom: 10px;
+  padding: 0;
+  background: none;
+}
+.quick-buy-compact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.quick-buy-compact-img {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 6px;
+  background: #0d0d1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.quick-buy-compact-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+.quick-buy-compact-info {
+  flex: 1;
+  min-width: 0;
+}
+.quick-buy.quick-buy-compact .quick-buy-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  margin: 0 0 3px;
+  padding: 0;
+  white-space: normal;
+}
+.quick-buy-sub {
+  font-size: 10px;
+  color: #888;
+  line-height: 1.4;
+}
+.quick-buy-compact-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 10px;
+}
+.quick-buy.quick-buy-compact .quick-buy-price {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--orange, #f90);
+  margin: 0;
+  padding: 0;
+}
+.quick-buy.quick-buy-compact .quick-buy-price span {
+  font-size: 10px;
+  font-weight: 400;
+  color: #777;
+  margin-left: 3px;
+}
+.quick-buy-arrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,165,0,0.7);
+  transition: color 0.2s, transform 0.2s;
+}
+.quick-buy.quick-buy-compact:hover .quick-buy-arrow {
+  color: var(--orange, #f90);
+}
+
+/* ── Sticky sidebar ──────────────────────────────────────── */
+
+/* WICHTIG: align-self muss stretch sein (nicht start!),
+   damit die Sidebar die volle Grid-Höhe bekommt —
+   sonst hat position:sticky darin keinen Scroll-Raum */
+.sidebar {
+  align-self: stretch !important;
+  display: block;
+}
+
+/* sticky-wrap löst sich auf */
+.sticky-wrap {
+  display: contents;
+}
+
+/* Nav + Autor: sticky innerhalb der voll hohen Sidebar */
+.sidebar-sticky-block-wrap {
+  position: sticky;
+  top: 80px; /* per JS auf Header-Höhe gesetzt */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+</style>
 </head>
 <body>
 
@@ -274,7 +397,9 @@
         <li><a href="#kriterien">Vergleichskriterien</a></li>
         <li><a href="#top3">Die Top 3 im Detail</a></li>
         <li><a href="#vergleich">Vergleichstabelle aller Module</a></li>
+        <li><a href="#ratgeber">Mehr zu dem Thema</a></li>
         <li><a href="#abc-tech">ABC-Technologie erklärt</a></li>
+        <li><a href="#youtube-videos">Videos zu dem Thema</a></li>
         <li><a href="#fazit">Fazit &amp; Empfehlung</a></li>
         <li><a href="#faq">Häufige Fragen (FAQ)</a></li>
       </ol>
@@ -855,7 +980,7 @@
         </section>
 
             <!-- YOUTUBE VIDEO SECTION -->
-            <section id="Youtube Videos">
+            <section id="youtube-videos">
       <div class="section-title">Videos zu diesem Thema anschauen</div>
       <div class="yt-grid">
         <div class="yt-card">
@@ -983,31 +1108,41 @@
   <aside class="sidebar">
     <div class="sticky-wrap">
 
+      <!-- QUICK BUY (kompakt, kein Button) -->
+      <a href="https://solarhandel24.de/products/aiko-485w-full-black-aiko-a485-mce54db-neostar-3s" target="_blank" rel="noopener" class="quick-buy quick-buy-compact">
+        <div class="quick-buy-label">☀ Solar Akademie Favorit 2026</div>
+        <div class="quick-buy-compact-row">
+          <div class="quick-buy-compact-img"><img src="assets/img/AIKO A485-MCE54Db.webp" alt="AIKO A485-MCE54Db" /></div>
+          <div class="quick-buy-compact-info">
+            <div class="quick-buy-name">AIKO A485-MCE54Db Neostar 3S+</div>
+            <div class="quick-buy-sub">485W · N-Type ABC · Full Black</div>
+          </div>
+        </div>
+        <div class="quick-buy-compact-footer">
+          <div class="quick-buy-price">0,247 €/W <span>pro Wattpeak</span></div>
+          <div class="quick-buy-arrow">Ansehen ↗*</div>
+        </div>
+      </a>
+
+      <div class="sidebar-sticky-block-wrap">
       <!-- ARTIKEL-NAV -->
       <div class="sidebar-card article-nav-card">
         <div class="sidebar-card-header">Auf dieser Seite</div>
         <nav class="article-nav">
-          <a href="#bestenliste" class="article-nav-link"><span class="article-nav-step">1</span>Bestenliste</a>
-          <a href="#kriterien" class="article-nav-link"><span class="article-nav-step">2</span>Vergleichskriterien</a>
-          <a href="#top3" class="article-nav-link"><span class="article-nav-step">3</span>Top 3 im Detail</a>
-          <a href="#vergleich" class="article-nav-link"><span class="article-nav-step">4</span>Vergleichstabelle</a>
-          <a href="#ratgeber" class="article-nav-link"><span class="article-nav-step">5</span>Ratgeber</a>
-          <a href="#abc-tech" class="article-nav-link"><span class="article-nav-step">6</span>ABC-Technologie</a>
-          <a href="#faq" class="article-nav-link"><span class="article-nav-step">7</span>FAQ</a>
-          <a href="#fazit" class="article-nav-link"><span class="article-nav-step">8</span>Fazit</a>
+          <!-- <a href="#bestenliste" class="article-nav-link"><span class="article-nav-step">1</span>Bestenliste</a> -->
+          <a href="#kriterien" class="article-nav-link"><span class="article-nav-step">1</span>Vergleichskriterien</a>
+          <a href="#top3" class="article-nav-link"><span class="article-nav-step">2</span>Top 3 im Detail</a>
+          <a href="#vergleich" class="article-nav-link"><span class="article-nav-step">3</span>Vergleichstabelle</a>
+          <a href="#ratgeber" class="article-nav-link"><span class="article-nav-step">4</span>Ratgeber</a>
+          <a href="#abc-tech" class="article-nav-link"><span class="article-nav-step">5</span>ABC-Technologie</a>
+          <a href="#youtube-videos" class="article-nav-link"><span class="article-nav-step">6</span>Videos zu dem Thema</a>
+          <a href="#fazit" class="article-nav-link"><span class="article-nav-step">7</span>Fazit</a>
+          <a href="#faq" class="article-nav-link"><span class="article-nav-step">8</span>FAQ</a>
+
         </nav>
       </div>
 
-      <!-- QUICK BUY -->
-      <div class="quick-buy">
-        <div class="quick-buy-label">☀ Solar Akademie Favorit 2026</div>
-        <div class="quick-buy-img"><img src="assets/img/AIKO A485-MCE54Db.webp" /></div>
-        <div class="quick-buy-name">AIKO A485-MCE54Db Neostar 3S+</div>
-        <div class="quick-buy-price">0,247 €/W <span>pro Wattpeak</span></div>
-        <a href="https://solarhandel24.de/products/aiko-485w-full-black-aiko-a485-mce54db-neostar-3s" target="_blank" rel="noopener" class="btn-orange">Auf Solarhandel24 kaufen ↗*</a>
-      </div>
-
-      <!-- BESTENLISTE CARD -->
+      <!-- BESTENLISTE CARD 
       <div class="sidebar-card">
         <div class="sidebar-card-header">Solar Akademie Bestenliste</div>
         <div class="rank-list">
@@ -1037,7 +1172,7 @@
             <div class="rank-item-price">0,150 €/W</div>
           </div>
         </div>
-      </div>
+      </div> -->
  <!-- AUTOR CARD -->
       <div class="sidebar-card">
         <div class="sidebar-card-header">Über den Autor</div>
@@ -1060,8 +1195,9 @@
           </div>
         </div>
       </div>
+      </div><!-- /sidebar-sticky-block-wrap -->
 
-      <!-- WEITERE BESTENLISTEN -->
+      <!-- WEITERE BESTENLISTEN 
       <div class="sidebar-card">
         <div class="sidebar-card-header">Weitere Bestenlisten</div>
         <div class="more-lists-inner">
@@ -1070,7 +1206,7 @@
           <div class="more-list-item">Balkonkraftwerke <span>Bald</span></div>
         </div>
       </div>
-
+-->
     </div>
   </aside>
 
@@ -1129,7 +1265,11 @@
     bar.style.top = header.offsetHeight + 'px';
   }
 
-  function setStickyOffsets() {}
+  function setStickyOffsets() {
+    var headerH = header.offsetHeight + 8;
+    var wrap = document.querySelector('.sidebar-sticky-block-wrap');
+    if (wrap) wrap.style.top = headerH + 'px';
+  }
 
   function updateQuickBuyFixed() {}
 
@@ -1161,7 +1301,7 @@ document.getElementById('mobileTestToggle').addEventListener('click', function()
 
 // Scroll-Spy für Artikel-Nav
 (function() {
-  var sections = ['bestenliste','kriterien','top3','vergleich','abc-tech','faq','fazit'];
+  var sections = ['bestenliste','kriterien','top3','vergleich','ratgeber', 'abc-tech','youtube-videos', 'fazit','faq'];
   var links = document.querySelectorAll('.article-nav-link');
   function onScroll() {
     var scrollY = window.scrollY + 120;
