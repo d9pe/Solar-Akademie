@@ -112,16 +112,17 @@ footer { background: var(--black); color: #ccc; }
 /* ============================================================
    LEGAL / SUBPAGES
    ============================================================ */
-.page-hero { background: var(--black); padding: 48px 24px 40px; }
-.page-hero-inner { max-width: 860px; margin: 0 auto; }
+.page-hero { background: var(--black); padding: 60px 24px 52px; position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(255,168,0,0.12) 0%, transparent 60%); pointer-events: none; }
+.page-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 .breadcrumb { font-size: 12px; color: #666; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
 .breadcrumb a { color: var(--orange); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb-sep { color: #444; }
-.page-hero h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 700; color: var(--white); letter-spacing: -1px; margin-bottom: 10px; }
+.page-hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 700; color: var(--white); letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 14px; }
 .page-hero h1 span { color: var(--orange); }
-.page-hero-meta { font-size: 12px; color: #666; }
-.legal-wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 60px; }
+.page-hero-meta { font-size: 13px; color: #666; }
+.legal-wrap { max-width: 1200px; margin: 0 auto; padding: 40px 24px 60px; }
 .legal-section { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 30px 32px; margin-bottom: 20px; }
 .legal-section h2 { font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--orange-light); }
 .legal-section h3 { font-size: 13px; font-weight: 700; color: var(--black); margin: 20px 0 8px; }
@@ -165,13 +166,13 @@ footer { background: var(--black); color: #ccc; }
 /* ============================================================
    ABOUT PAGE
    ============================================================ */
-.about-hero { background: var(--black); padding: 60px 24px 50px; position: relative; overflow: hidden; }
-.about-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(255,168,0,0.12) 0%, transparent 60%); }
-.about-hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+.about-hero { background: var(--black); padding: 60px 24px 52px; position: relative; overflow: hidden; }
+.about-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(255,168,0,0.12) 0%, transparent 60%); pointer-events: none; }
+.about-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 .about-hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 700; color: var(--white); letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; }
 .about-hero h1 span { color: var(--orange); }
 .about-hero-lead { font-size: 15px; font-weight: 300; color: #aaa; max-width: 560px; line-height: 1.7; }
-.about-wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 60px; display: flex; flex-direction: column; gap: 20px; }
+.about-wrap { max-width: 1200px; margin: 0 auto; padding: 40px 24px 60px; display: flex; flex-direction: column; gap: 20px; }
 .about-section { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 30px 32px; }
 .about-section h2 { font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--orange-light); }
 .about-section p { font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 10px; }
