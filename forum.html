@@ -800,20 +800,6 @@
 </footer>
 
 <script>
-// Progress bar
-(function() {
-  var bar = document.getElementById('progressBar');
-  var header = document.querySelector('header');
-  function setBarTop() { bar.style.top = header.offsetHeight + 'px'; }
-  setBarTop();
-  window.addEventListener('resize', setBarTop);
-  window.addEventListener('scroll', function() {
-    var s = window.scrollY;
-    var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
-  }, { passive: true });
-})();
-
 // Mobile menu
 document.getElementById('mobileMenuBtn').addEventListener('click', function() {
   document.getElementById('mobileMenu').classList.toggle('open');
