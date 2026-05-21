@@ -701,7 +701,7 @@ section { scroll-margin-top: 90px; }
 .lp-ratgeber-card:hover { transform: translateY(-2px); }
 .lp-ratgeber-header { display: flex; align-items: center; gap: 10px; }
 .lp-ratgeber-icon { font-size: 22px; flex-shrink: 0; }
-.lp-ratgeber-title { font-size: 14px; font-weight: 700; color: var(--black); }
+.lp-ratgeber-title { font-size: 16px; font-weight: 700; color: var(--black); }
 .lp-ratgeber-desc { font-size: 12px; color: #666; line-height: 1.6; flex: 1; }
 .lp-ratgeber-link { font-size: 12px; font-weight: 700; color: var(--orange); margin-top: 4px; }
 
