@@ -431,7 +431,7 @@ section { scroll-margin-top: 90px; }
 .faq-answer { padding: 22px 20px; }
 .faq-answer p { font-size: 14px; color: #444; line-height: 1.75; margin: 0; }
 .faq-answer p strong { color: var(--black); }
-
+.faq-list--variants { display: flex; flex-direction: column; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); margin-bottom:20px; }
 /* ============================================================
    GLOSSAR PAGE
    ============================================================ */
