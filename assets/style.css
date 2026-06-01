@@ -170,7 +170,6 @@ footer { background: var(--black); color: #ccc; }
 .article-text-block h3 { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--orange-light); letter-spacing: -0.3px; }
 .article-text-block p { font-size: 14px; color: #444; line-height: 1.8; margin-bottom: 12px; }
 .article-text-block p:last-child { margin-bottom: 0; }
-.article-text-block p strong { color: var(--black); }
 .article-text-block .notice-box { margin-top: 14px; }
 @media (max-width: 640px) {
   .article-text-block { padding: 18px 16px; }
@@ -406,7 +405,7 @@ section { scroll-margin-top: 90px; }
 .fazit-infobox { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 22px; margin-bottom: 18px; font-size: 14px; line-height: 1.7; color: #333; }
 .fazit-card { background: var(--black); border-radius: var(--radius); padding: 22px; }
 .fazit-winner-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-.fazit-winner-img { width: 90px; height: 90px; background: #222; border-radius: 8px; flex-shrink: 0; display: flex; object-fit: contain; overflow: hidden; }
+.fazit-winner-img { background: #222; border-radius: 8px; flex-shrink: 0; display: flex; object-fit: contain; overflow: hidden; }
 .fazit-winner-info { flex: 1; }
 .fazit-winner-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
 .fazit-winner-name { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
@@ -500,7 +499,10 @@ section { scroll-margin-top: 90px; }
   .tech-box { padding: 18px 16px; }
   .yt-wrapper iframe { aspect-ratio: 16/9; height: auto; }
   .fazit-card { padding: 16px; }
-  .fazit-winner-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .fazit-winner-row { flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+  .fazit-winner-info { width: 100%; }
+  .fazit-winner-specs { justify-content: center; }
+  .fazit-winner-cta { width: 100%; align-items: center; }
   .fazit-winner-row .btn-orange { width: 100%; }
   .legal-wrap { padding: 16px; }
   .legal-section { padding: 18px 16px; }
@@ -577,6 +579,9 @@ section { scroll-margin-top: 90px; }
   .lp-section { padding: 28px 14px; }
   .lp-hero { padding: 32px 14px; }
   .lp-nl { padding: 20px 14px; }
+    .award-header-label {
+    font-size: 11px;
+  }
 }
 
 /* ============================================================
@@ -869,4 +874,133 @@ section { scroll-margin-top: 90px; }
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+/* ============================================================
+   AWARD IMAGE INNER
+   ============================================================ */
+.award-img-inner {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+/* ============================================================
+   IMG-TEXT ROW (Bild links, Text rechts)
+   ============================================================ */
+.img-text-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin: 24px 0;
+}
+.img-text-row__img {
+  flex: 0 0 300px;
+  max-width: 300px;
+  text-align: center;
+}
+.img-text-row__img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+.img-text-row__caption {
+  margin: 8px 0 0 !important;
+  font-size: 12px !important;
+  color: #888 !important;
+  line-height: 1.4 !important;
+}
+.img-text-row__text {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.8;
+}
+@media (max-width: 640px) {
+  .img-text-row {
+    flex-direction: column;
+  }
+  .img-text-row__img {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   VIDEO-TEXT ROW (Video links, Text rechts)
+   ============================================================ */
+.video-text-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin: 24px 0;
+}
+.video-text-row__video {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.video-text-row__text {
+  flex: 1;
+}
+@media (max-width: 640px) {
+  .video-text-row {
+    flex-direction: column;
+  }
+  .video-text-row__video {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   UTILITY: MARGIN-TOP SPACER
+   ============================================================ */
+.article-text-block--mt {
+  margin-top: 48px;
+}
+.section--mt {
+  margin-top: 48px;
+}
+
+/* ============================================================
+   BUTTON VARIANTS
+   ============================================================ */
+.btn-orange--auto {
+  width: auto !important;
+  display: inline-block !important;
+  padding: 11px 22px !important;
+}
+.btn-orange--fazit {
+  width: auto !important;
+  display: inline-block !important;
+  padding: 13px 22px !important;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   FOOTER LOGO WRAPPER
+   ============================================================ */
+.footer-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* ============================================================
+   HERO BG IMAGE (replaces CSS background for LCP)
+   ============================================================ */
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
 }
